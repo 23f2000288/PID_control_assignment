@@ -1,9 +1,9 @@
-# PID Control: Physical AI Intern Assignment
+# PID Control
 
-This project contains a beginner-friendly PID tutorial, a reusable discrete PID
-controller written from scratch, reproducible NumPy/Matplotlib simulations, and
-the generated assignment PDF. The report uses Times New Roman when it is
-available on the computer that builds it.
+This project simulates PID control for a spring-damper system. It includes a
+discrete PID controller, response plots and measurements, automated tests, and
+a short report of the results. The controller and RK4 plant simulation are
+implemented in Python; NumPy and Matplotlib are used for calculations and plots.
 
 ## Requirements
 
@@ -53,33 +53,14 @@ The controller supports output limits, conditional-integration anti-windup,
 derivative-on-measurement, and a first-order derivative filter. The simulations
 do not use a control-systems library.
 
-## Approach
+## Model and approach
 
-The plant is modelled by `x'' = (u - 10 x' - 20 x) / 1` and integrated with
-RK4. A hand-written discrete PID calculates the force at each time step. I
-checked P-only steady state against the force-balance calculation, compared
-P/PI/PD/PID using fixed response metrics, and simulated actuator saturation,
-sensor noise, a target step, sample-rate changes, and Ziegler-Nichols tuning.
-See `APPROACH.md` for the short results and limitations write-up.
-
-## Publish a GitHub link
-
-Create an empty repository on your GitHub account, then from this project
-directory initialize Git and push the files:
-
-```powershell
-git init
-git add .gitignore README.md APPROACH.md requirements.txt pid_control.py test_pid_control.py build_report.py metrics.csv figures PID_Control_Assignment.pdf
-git commit -m "Complete PID control assignment"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-git push -u origin main
-```
-
-Replace the example remote with your own repository URL. Do not include
-credentials or tokens in the URL or in this project.
-If the repository is private, grant `hr@modernmonklabs.com` access using the
-repository's GitHub Settings and collaborator/access controls.
+The plant equation is `x'' = (u - 10 x' - 20 x) / 1`. The controller updates
+the force at each sample, and RK4 advances the plant state. The P-only result
+is checked against the steady-state force balance. P, PI, PD, and PID responses
+are compared using the same response metrics. Additional simulations cover
+force saturation, sensor noise, a setpoint step, slower sampling, and
+Ziegler-Nichols tuning. `APPROACH.md` summarizes the results and limitations.
 
 ## Simulation conventions
 
